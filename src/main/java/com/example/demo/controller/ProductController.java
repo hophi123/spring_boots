@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,28 +20,40 @@ public class ProductController {
 	private ProductService productService;
 
 	@RequestMapping(value = "/product", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<String> getProduct() {
-		System.out.println("pppp");
+	public ResponseEntity<ProductEntity> getProduct() {
 		ProductEntity entity = null;
 		try {
 			entity = productService.getProductEntity();
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<String>("System error", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<ProductEntity>(HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<String>(entity.getProductName(), HttpStatus.OK);
+		return new ResponseEntity<ProductEntity>(entity, HttpStatus.OK);
 
 	}
+	
 
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
-	public ResponseEntity<String> test() {
+	@RequestMapping(value = "/product", method = RequestMethod.POST)
+	public ResponseEntity<String> createProduct(@RequestBody ProductEntity productEntity) {
 		try {
-			System.out.println("pppp");
+			productService.createProduct(productEntity);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>("System error", HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<String>("pppp", HttpStatus.OK);
+		return new ResponseEntity<String>("Product is created", HttpStatus.OK);
+
+	}
+	
+	@RequestMapping(value = "/product", method = RequestMethod.DELETE)
+	public ResponseEntity<String> delProduct(@RequestBody ProductEntity productEntity) {
+		try {
+			productService.createProduct(productEntity);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>("System error", HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<String>("Product is created", HttpStatus.OK);
 
 	}
 
