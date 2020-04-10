@@ -46,4 +46,13 @@ public class ProductDaoImpl implements ProductDao {
 		return entity;
 	}
 
+	@Override
+	public int delProduct(Integer id) {
+		StringBuilder sql = new StringBuilder();
+		sql.append(" DELETE ");
+		sql.append(" FROM ");
+		
+		return 0;
+	}
+
 }

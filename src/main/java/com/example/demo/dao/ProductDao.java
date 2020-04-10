@@ -7,5 +7,7 @@ public interface ProductDao {
 	public void createProduct(ProductEntity entity);
 
 	public ProductEntity getProduct(Integer id);
+	
+	public int delProduct(Integer id);
 
 }

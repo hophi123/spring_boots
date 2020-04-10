@@ -4,7 +4,7 @@ import com.example.demo.bean.ProductEntity;
 
 public interface ProductService {
 
-	public void createProduct();
+	public void createProduct(ProductEntity entity);
 
-	public ProductEntity getProductEntity();
+	public ProductEntity getProductEntityByid(int id);
 }

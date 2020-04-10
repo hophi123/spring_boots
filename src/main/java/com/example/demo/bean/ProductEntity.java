@@ -10,9 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "product")
-@NamedQuery(name = "ProductEntity.findAll", query = "SELECT m FROM ProductEntity m")
+	@NamedQuery(name = "ProductEntity.findAll", query = "SELECT m FROM ProductEntity m")
 public class ProductEntity implements Serializable{
 	
 	private static final long serialVersionUTD = 1l;

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.bean.ProductEntity;
 import com.example.demo.dao.ProductDao;
+import com.example.demo.dao.daoimpl.ProductDaoImpl;
 import com.example.demo.service.ProductService;
 
 @Service
@@ -17,18 +18,17 @@ public class ProductServiceImpl implements ProductService {
 	private ProductDao productDao;
 
 	@Override
-	public void createProduct() {
-		ProductEntity entity = new ProductEntity();
-		entity.setProductName("Ao the thao");
-		entity.setProductType(1);
+	public void createProduct(ProductEntity entity) {
 		productDao.createProduct(entity);
 	}
 
 	@Override
-	public ProductEntity getProductEntity() {
+	public ProductEntity getProductEntityByid(int id) {
 		ProductEntity entity = new ProductEntity();
-		entity = productDao.getProduct(1);
+		entity = productDao.getProduct(id);
 		return entity;
 	}
+	
+
 
 }
